@@ -24,7 +24,7 @@
         android:fontFamily="@font/pacifico_regular"
         android:text="@string/app_name"
         android:textColor="@color/design_default_color_on_primary"
-        android:textSize="30sp"
+        android:textSize="40sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
