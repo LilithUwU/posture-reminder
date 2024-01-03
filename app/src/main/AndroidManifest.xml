@@ -12,7 +12,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.StraightSpineReminder"
         tools:targetApi="31">
-      <!--  <activity
+        <activity
+            android:name=".CausesActivity"
+            android:exported="false"
+            android:label="@string/title_activity_causes"
+            android:theme="@style/Theme.StraightSpineReminder" />
+        <!--
+          <activity
             android:name=".MainActivity"
             android:exported="false"
             android:label="@string/title_activity_main"
@@ -23,24 +29,24 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>-->
-        <activity
-            android:name=".MainActivity"
-            android:exported="false"
-            android:label="@string/title_activity_main"
-            android:theme="@style/Theme.StraightSpineReminder" />
-
-        <activity
-            android:name=".SplashActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="false"
+            android:label="@string/title_activity_main"
+            android:theme="@style/Theme.StraightSpineReminder" />
+        <activity
+            android:name=".SplashActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
