@@ -75,6 +75,6 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
     debugImplementation("androidx.compose.material:material-icons-extended-android:1.5.4")
-
-
+    implementation("androidx.compose.ui:ui-text-google-fonts:1.5.4")
+    implementation("com.tbuonomo:dotsindicator:4.3")
 }

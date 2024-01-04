@@ -22,7 +22,7 @@ class SplashActivity : AppCompatActivity() {
             Animation.RELATIVE_TO_SELF, 0.5f,  // pivotX
             Animation.RELATIVE_TO_SELF, 0.5f   // pivotY
         )
-        scaleAnimation.duration = 2000
+        scaleAnimation.duration = 1000
         appNameTv.startAnimation(scaleAnimation)
 
         Handler(Looper.getMainLooper()).postDelayed(
@@ -30,7 +30,7 @@ class SplashActivity : AppCompatActivity() {
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
                 finish()
-            }, 4000
+            }, 1000
         )
     }
 }

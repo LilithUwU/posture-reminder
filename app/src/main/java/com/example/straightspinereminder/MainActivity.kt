@@ -3,6 +3,8 @@ package com.example.straightspinereminder
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.animation.core.FastOutSlowInEasing
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
@@ -22,6 +24,7 @@ import androidx.compose.material.icons.filled.SportsGymnastics
 import androidx.compose.material.icons.outlined.EditNotifications
 import androidx.compose.material.icons.outlined.ElectricBolt
 import androidx.compose.material.icons.outlined.SportsGymnastics
+import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -37,10 +40,16 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.straightspinereminder.ui.theme.StraightSpineReminderTheme
+import kotlinx.coroutines.delay
 
 class MainActivity : ComponentActivity() {
     @OptIn(ExperimentalFoundationApi::class)
@@ -65,52 +74,36 @@ class MainActivity : ComponentActivity() {
         )
         val causesItems = listOf(
             PagerContentItem(
-                causeTitle = "Use of technology",
-                causeDescription = "If you text on your phone often, you may develop “text neck” — a condition caused by flexing your neck forward too often. " +
-                        " If you sit on the couch watching television for many hours each day, you may develop stooped shoulders and lower back problems. " +
-                        " If you often sit in a chair without ergonomic support, your posture may eventually worsen. ",
+                causeTitle = R.string.causesTab_title1,
+                causeDescription = R.string.causesTab_text1,
                 causeIcon = R.drawable.posture_computer
             ),
             PagerContentItem(
-                causeTitle = "Injury",
-                causeDescription = "If you have suffered from an injury, some of the muscles around the injury site may spasm to protect " +
-                        "the part of your body that is vulnerable.  This is a normal physiological response designed to keep the injured part of your body stable.  " +
-                        "Unfortunately, the muscles that are spasming frequently can eventually weaken, which results in a muscular imbalance that may affect your posture. ",
+                causeTitle = R.string.causesTab_title2,
+                causeDescription = R.string.causesTab_text2,
                 causeIcon = R.drawable.posture_injury
-
             ),
             PagerContentItem(
-                causeTitle = "Poor footwear",
-                causeDescription = "If you wear shoes that are poorly fitted, your gait may be adversely affected. " +
-                        " It may cause you to walk in an unusual way, placing undue strain on your ankles, hips, or knees.  " +
-                        "This can eventually lead to poor posture.",
+                causeTitle = R.string.causesTab_title3,
+                causeDescription = R.string.causesTab_text3,
                 causeIcon = R.drawable.posture_shoes
             ),
-
             PagerContentItem(
-                causeTitle = "Stress and anxiety",
-                causeDescription = "Researchers have discovered that being in a stressed or anxious state can change how a person uses their body.  Stressed and anxious people tend to take shallower breaths and have more contracted muscles.  Unfortunately this can lead to poor posture.",
+                causeTitle = R.string.causesTab_title4,
+                causeDescription = R.string.causesTab_text4,
                 causeIcon = R.drawable.posture_stress
             ),
-
             PagerContentItem(
-                causeTitle = "Muscle tension or muscle weakness",
-                causeDescription = " If you have certain muscles that are much stronger or much weaker than others, it can encourage poor posture.  For example, if your abdominal muscles are weak from an insufficient amount of exercise, you may come to rely on back muscles for stability, leading to back pain.  The solution to this common problem is a robust exercise regime that works out all of the major muscle groups. ",
+                causeTitle = R.string.causesTab_title5,
+                causeDescription = R.string.causesTab_text5,
                 causeIcon = R.drawable.posture_weak_muscle
             )
         )
 
 
 
-
-
-
-
-
-
         setContent {
             StraightSpineReminderTheme {
-                // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
@@ -141,7 +134,6 @@ class MainActivity : ComponentActivity() {
                             tabItems.forEachIndexed { index, item ->
                                 Tab(
                                     selected = index == selectedTabIndex,
-
                                     onClick = { selectedTabIndex = index },
                                     text = { Text(text = item.title) },
                                     icon = {
@@ -153,11 +145,7 @@ class MainActivity : ComponentActivity() {
                                             contentDescription = item.title
                                         )
                                     }
-
-
                                 )
-
-
                             }
                         }
 
@@ -168,38 +156,71 @@ class MainActivity : ComponentActivity() {
                                 .weight(1f)
                         )
                         { index ->
-                            Box(
-                                modifier = Modifier.fillMaxSize(),
-                                contentAlignment = Alignment.Center
-                            ) {
-                                Text(text = tabItems[index].title)
-                                if (index == 0) {
-                                    VerticalPager(
+                            if (index == 0) {
+                                Card(
+                                    Modifier
+                                        .fillMaxSize()
+                                        .padding(100.dp, 100.dp, 100.dp, 200.dp)
+                                        .graphicsLayer {
+                                            alpha = 0.5f
+                                        }
+                                ) {
+                                    Box(
+                                        modifier = Modifier.fillMaxSize(),
+                                        contentAlignment = Alignment.Center
+                                    ) {
+//                                        Text(text = tabItems[index].title)
+                                        VerticalPager(
+                                            state = pagerStateCauses,
+                                            modifier = Modifier
+                                                .fillMaxWidth()
+                                                .fillMaxHeight(),
+                                        ) { page ->
 
-                                        state = pagerStateCauses,
-                                        modifier = Modifier
-                                            .fillMaxWidth()
-                                            .fillMaxHeight()
-                                    ) { page ->
-                                        Text(
-                                            text = causesItems[page].causeTitle,
-                                            Modifier.padding(40.dp, 100.dp, 40.dp, 20.dp),
-                                        )
-                                        Text(
-                                            text = causesItems[page].causeDescription,
-                                            Modifier.padding(50.dp, 20.dp, 50.dp, 50.dp)
-                                        )
-                                        showImage(id = causesItems[page].causeIcon, 100)
+                                            Text(
+                                                text = stringResource(id = causesItems[page].causeTitle),
+                                                Modifier.padding(40.dp, 60.dp, 40.dp, 20.dp),
+                                                fontFamily = FontFamily.SansSerif,
+                                                fontStyle = FontStyle.Italic,
+                                                fontSize = 30.sp,
+                                            )
+                                            Text(
+                                                text = stringResource(id = causesItems[page].causeDescription),
+                                                Modifier.padding(50.dp, 20.dp, 50.dp, 50.dp),
+                                                fontStyle = FontStyle.Italic
+                                            )
+                                            showImage(id = causesItems[page].causeIcon, 100)
+                                        }
+
+                                    }
+
+
+                                }
+
+
+                                LaunchedEffect(key1 = pagerStateCauses.initialPage) {
+                                    while (true) {
+                                        delay(5000)
+                                        with(pagerStateCauses) {
+                                            val target =
+                                                if (currentPage < pageCount - 1) currentPage + 1 else 0
+                                            animateScrollToPage(
+                                                page = target,
+                                                animationSpec = tween(
+                                                    durationMillis = 5000,
+                                                    easing = FastOutSlowInEasing
+                                                )
+                                            )
+                                        }
                                     }
                                 }
+
+
                             }
-
-
                         }
-
-
                     }
                 }
+
             }
         }
     }
@@ -229,10 +250,12 @@ data class TabItem(
 )
 
 data class PagerContentItem(
-    val causeTitle: String,
-    val causeDescription: String,
+    val causeTitle: Int,
+    val causeDescription: Int,
     val causeIcon: Int
 )
+
+
 
 @Composable
 fun showImage(id: Int, size: Int) {
