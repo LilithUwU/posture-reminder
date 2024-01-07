@@ -15,10 +15,10 @@ class SplashActivity : AppCompatActivity() {
         setContentView(R.layout.activity_splash)
         val appNameTv: TextView = findViewById(R.id.app_name_tv)
         val scaleAnimation = ScaleAnimation(
-            0.1f,  // fromXScale
-            1.0f,  // toXScale
-            0.1f,  // fromYScale
-            1.0f,  // toYScale
+            0.1f,
+            1.0f,
+            0.1f,
+            1.0f,
             Animation.RELATIVE_TO_SELF, 0.5f,  // pivotX
             Animation.RELATIVE_TO_SELF, 0.5f   // pivotY
         )
