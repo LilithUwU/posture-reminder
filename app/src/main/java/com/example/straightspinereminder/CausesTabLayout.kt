@@ -100,7 +100,7 @@ class CausesTabLayout {
 
         }
 //Scroll animation
-        LaunchedEffect(key1 = pagerStateCauses.initialPage) {
+        LaunchedEffect(key1 = pagerStateCauses.settledPage) {
             while (true) {
                 delay(5000)
                 with(pagerStateCauses) {
