@@ -53,8 +53,9 @@ class MainActivity : ComponentActivity() {
                 selectedIcon = Icons.Filled.EditNotifications
             )
         )
-        val causesTab = CausesTabLayout()
-
+        val causesTabLayout = CausesTabLayout()
+//        val exercisesTabLayout = exercisesTabLayout()
+//        val notificationsTabLayout = notificationsTabLayout()
 
 
         setContent {
@@ -70,7 +71,7 @@ class MainActivity : ComponentActivity() {
                         tabItems.size
                     }
                     val pagerStateCauses = rememberPagerState {
-                        causesTab.causesItems.size
+                        causesTabLayout.causesItems.size
                     }
                     LaunchedEffect(selectedTabIndex) {
                         pagerState.animateScrollToPage(selectedTabIndex)
@@ -112,7 +113,7 @@ class MainActivity : ComponentActivity() {
                         )
                         { index ->
                             when (index) {
-                                0 -> causesTab.CausesTab(pagerStateCauses = pagerStateCauses)
+                                0 -> causesTabLayout.CausesTab(pagerStateCauses = pagerStateCauses)
                                 //todo
                                 // 1 -> exercisesTab.exercisesTab(pagerStateExercises)
                                 // 2 -> notificationsTab.notificationsTab(pagerStateNotifications)
