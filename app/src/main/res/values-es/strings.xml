@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Recordatorio de postura</string>
+    <string name="title_activity_main">Actividad principal</string>
+    <string name="title_activity_causes">CausasActividad</string>
+
+    <string name="causesTab_title1">Uso de la tecnología</string>
+    <string name="causesTab_title2">Lesión</string>
+    <string name="causesTab_title3">Calzado deficiente</string>
+    <string name="causesTab_title4">Estrés y ansiedad</string>
+    <string name="causesTab_title5">Debilidad muscular</string>
+
+    <string name="causesTab_text1">Si envía mensajes de texto con frecuencia en su teléfono, puede desarrollar "cuello de texto", una afección causada por flexionar el cuello hacia adelante con demasiada frecuencia. Si te sientas en el sofá viendo televisión durante muchas horas cada día, puedes desarrollar hombros encorvados y problemas en la espalda baja. Si te sientas con frecuencia en una silla sin soporte ergonómico, tu postura puede eventualmente empeorar. </string>
+    <string name="causesTab_text2">Si ha sufrido una lesión, algunos de los músculos alrededor del sitio de la lesión pueden sufrir espasmos para proteger la parte de su cuerpo que es vulnerable. Esta es una respuesta fisiológica normal diseñada para mantener estable la parte lesionada de su cuerpo. Desafortunadamente, los músculos que sufren espasmos frecuentes pueden eventualmente debilitarse, lo que resulta en un desequilibrio muscular que puede afectar su postura.</string>
+    <string name="causesTab_text3">Si usa zapatos que no le quedan bien, su forma de andar puede verse afectada negativamente. Puede hacer que usted camine de una manera inusual, ejerciendo una tensión indebida en sus tobillos, caderas o rodillas. Con el tiempo, esto puede provocar una mala postura.</string>
+    <string name="causesTab_text4">Los investigadores han descubierto que estar en un estado de estrés o ansiedad puede cambiar la forma en que una persona usa su cuerpo. Las personas estresadas y ansiosas tienden a respirar menos profundamente y a tener los músculos más contraídos. Lamentablemente, esto puede provocar una mala postura.</string>
+    <string name="causesTab_text5">Si tienes ciertos músculos que son mucho más fuertes o mucho más débiles que otros, esto puede fomentar una mala postura. Por ejemplo, si sus músculos abdominales están débiles debido a una cantidad insuficiente de ejercicio, puede llegar a depender de los músculos de la espalda para obtener estabilidad, lo que provoca dolor de espalda. La solución a este problema común es un régimen de ejercicio intenso que ejercite todos los grupos de músculos principales. </string>
+</resources>

@@ -54,8 +54,9 @@ class MainActivity : ComponentActivity() {
             )
         )
         val causesTabLayout = CausesTabLayout()
-//        val exercisesTabLayout = exercisesTabLayout()
-//        val notificationsTabLayout = notificationsTabLayout()
+//  todo
+//   val exercisesTabLayout = exercisesTabLayout()
+//   val notificationsTabLayout = notificationsTabLayout()
 
 
         setContent {
@@ -121,7 +122,6 @@ class MainActivity : ComponentActivity() {
                         }
                     }
                 }
-
             }
         }
     }

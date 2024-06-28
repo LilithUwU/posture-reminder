@@ -3,13 +3,11 @@
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_causes">CausesActivity</string>
 
-
     <string name="causesTab_title1">Use of technology</string>
     <string name="causesTab_title2">Injury</string>
     <string name="causesTab_title3">Poor footwear</string>
     <string name="causesTab_title4">Stress and anxiety</string>
     <string name="causesTab_title5">Muscle weakness</string>
-
 
     <string name="causesTab_text1">If you text on your phone often, you may develop “text neck” — a condition caused by flexing your neck forward too often.  If you sit on the couch watching television for many hours each day, you may develop stooped shoulders and lower back problems. If you often sit in a chair without ergonomic support, your posture may eventually worsen. </string>
     <string name="causesTab_text2">If you have suffered from an injury, some of the muscles around the injury site may spasm to protect the part of your body that is vulnerable.  This is a normal physiological response designed to keep the injured part of your body stable.Unfortunately, the muscles that are spasming frequently can eventually weaken, which results in a muscular imbalance that may affect your posture.</string>
