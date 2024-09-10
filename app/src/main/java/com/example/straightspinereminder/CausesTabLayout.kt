@@ -2,14 +2,13 @@ package com.example.straightspinereminder
 
 import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.tween
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.pager.PagerState
 import androidx.compose.foundation.pager.VerticalPager
 import androidx.compose.material3.Card
@@ -25,8 +24,13 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.straightspinereminder.utilities.WindowInfo
+import com.example.straightspinereminder.utilities.getFontSizeBody
+import com.example.straightspinereminder.utilities.getFontSizeTitle
+import com.example.straightspinereminder.utilities.rememberWindowInfo
 import kotlinx.coroutines.delay
 
 
@@ -59,40 +63,71 @@ class CausesTabLayout {
         )
     )
 
-    @OptIn(ExperimentalFoundationApi::class)
     @Composable
-    fun CausesTab(pagerStateCauses: PagerState) {
+    fun CausesTab(pagerState: PagerState) {
+        val fsTitle= getFontSizeTitle()
+        val fsBody= getFontSizeBody()
+        val winInfo= rememberWindowInfo()
+        /** card padding size*/
+        val cp= when (winInfo.screenWidthInfo) {
+            WindowInfo.WindowType.Compact -> 50.dp
+            WindowInfo.WindowType.Medium -> 100.dp
+            else -> 300.dp
+        }
+        /**title padding size*/
+        val tlp= when (winInfo.screenWidthInfo) {
+            WindowInfo.WindowType.Compact -> 20.dp
+            WindowInfo.WindowType.Medium -> 40.dp
+            else -> 60.dp
+        }
+
+        /**body padding size*/
+        val bp= when (winInfo.screenWidthInfo) {
+            WindowInfo.WindowType.Compact -> 25.dp
+            WindowInfo.WindowType.Medium -> 35.dp
+            else -> 40.dp
+        }
+
+        /**image size*/
+        val imgSize= when (winInfo.screenWidthInfo) {
+            WindowInfo.WindowType.Compact -> 50
+            WindowInfo.WindowType.Medium -> 100
+            else -> 150
+        }
+
         Card(
             Modifier
-                .fillMaxSize()
-                .padding(100.dp, 100.dp, 100.dp, 200.dp)
+                .wrapContentSize()
+                .padding(cp,cp,cp,cp)
                 .graphicsLayer {
                     alpha = 0.5f
                 }
         ) {
             Box(
-                modifier = Modifier.fillMaxSize(),
+                modifier = Modifier.heightIn(min = 200.dp, max = 400.dp),
                 contentAlignment = Alignment.Center
             ) {
                 VerticalPager(
-                    state = pagerStateCauses,
+                    state = pagerState,
                     modifier = Modifier
                         .fillMaxWidth()
-                        .fillMaxHeight(),
+                        .wrapContentSize(),
                 ) { page ->
-                    Text(
+                    Text(//Title
                         text = stringResource(id = causesItems[page].causeTitle),
-                        Modifier.padding(40.dp, 60.dp, 40.dp, 20.dp),
+                        Modifier.padding(tlp,tlp,tlp,0.dp),
                         fontFamily = FontFamily.SansSerif,
                         fontStyle = FontStyle.Italic,
-                        fontSize = 30.sp,
+                        fontSize = fsTitle.sp,
+                        fontWeight = FontWeight.Bold
                     )
-                    Text(
+                    Text(//Body
                         text = stringResource(id = causesItems[page].causeDescription),
-                        Modifier.padding(50.dp, 20.dp, 50.dp, 50.dp),
-                        fontStyle = FontStyle.Italic
-                    )
-                    ShowImage(id = causesItems[page].causeIcon, 100)
+                        Modifier.padding(bp,0.dp,bp,0.dp),
+                        fontStyle = FontStyle.Italic,
+                        fontSize = fsBody.sp,
+                        )
+                    ShowImage(id = causesItems[page].causeIcon, imgSize)
                 }
 
             }
@@ -100,10 +135,10 @@ class CausesTabLayout {
 
         }
 //Scroll animation
-        LaunchedEffect(key1 = pagerStateCauses.settledPage) {
+        LaunchedEffect(key1 = pagerState.settledPage) {
             while (true) {
                 delay(5000)
-                with(pagerStateCauses) {
+                with(pagerState) {
                     val target =
                         if (currentPage < pageCount - 1) currentPage + 1 else 0
                     animateScrollToPage(
@@ -116,7 +151,6 @@ class CausesTabLayout {
                 }
             }
         }
-
     }
 
 }
