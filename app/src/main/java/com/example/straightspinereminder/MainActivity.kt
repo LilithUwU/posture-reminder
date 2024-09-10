@@ -3,7 +3,6 @@ package com.example.straightspinereminder
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -33,7 +32,6 @@ import com.example.straightspinereminder.ui.theme.StraightSpineReminderTheme
 
 class MainActivity : ComponentActivity() {
 
-    @OptIn(ExperimentalFoundationApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val tabItems = listOf(
@@ -48,14 +46,14 @@ class MainActivity : ComponentActivity() {
                 selectedIcon = Icons.Filled.SportsGymnastics
             ),
             TabItem(
-                title = "Notification",
+                title = "Notifications",
                 unselectedIcon = Icons.Outlined.EditNotifications,
                 selectedIcon = Icons.Filled.EditNotifications
             )
         )
         val causesTabLayout = CausesTabLayout()
+        val exercisesTab = ExercisesTabLayout()
 //  todo
-//   val exercisesTabLayout = exercisesTabLayout()
 //   val notificationsTabLayout = notificationsTabLayout()
 
 
@@ -74,6 +72,7 @@ class MainActivity : ComponentActivity() {
                     val pagerStateCauses = rememberPagerState {
                         causesTabLayout.causesItems.size
                     }
+
                     LaunchedEffect(selectedTabIndex) {
                         pagerState.animateScrollToPage(selectedTabIndex)
                     }
@@ -82,7 +81,6 @@ class MainActivity : ComponentActivity() {
                             selectedTabIndex = pagerState.currentPage
                         }
                     }
-
                     Column(
                         modifier = Modifier
                             .fillMaxSize()
@@ -114,9 +112,9 @@ class MainActivity : ComponentActivity() {
                         )
                         { index ->
                             when (index) {
-                                0 -> causesTabLayout.CausesTab(pagerStateCauses = pagerStateCauses)
+                                0 -> causesTabLayout.CausesTab(pagerState = pagerStateCauses)
+                                1 -> exercisesTab.ExercisesTab()
                                 //todo
-                                // 1 -> exercisesTab.exercisesTab(pagerStateExercises)
                                 // 2 -> notificationsTab.notificationsTab(pagerStateNotifications)
                             }
                         }

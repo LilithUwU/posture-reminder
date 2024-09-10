@@ -61,7 +61,7 @@ class CausesTabLayout {
 
     @OptIn(ExperimentalFoundationApi::class)
     @Composable
-    fun CausesTab(pagerStateCauses: PagerState) {
+    fun CausesTab(pagerState: PagerState) {
         Card(
             Modifier
                 .fillMaxSize()
@@ -75,7 +75,7 @@ class CausesTabLayout {
                 contentAlignment = Alignment.Center
             ) {
                 VerticalPager(
-                    state = pagerStateCauses,
+                    state = pagerState,
                     modifier = Modifier
                         .fillMaxWidth()
                         .fillMaxHeight(),
@@ -100,10 +100,10 @@ class CausesTabLayout {
 
         }
 //Scroll animation
-        LaunchedEffect(key1 = pagerStateCauses.settledPage) {
+        LaunchedEffect(key1 = pagerState.settledPage) {
             while (true) {
                 delay(5000)
-                with(pagerStateCauses) {
+                with(pagerState) {
                     val target =
                         if (currentPage < pageCount - 1) currentPage + 1 else 0
                     animateScrollToPage(
