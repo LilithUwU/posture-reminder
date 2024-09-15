@@ -5,7 +5,6 @@ import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentSize
@@ -97,37 +96,35 @@ class CausesTabLayout {
 
         Card(
             Modifier
-                .wrapContentSize()
-                .padding(cp,cp,cp,cp)
+                .fillMaxSize()
+                .padding(100.dp, 100.dp, 100.dp, 200.dp)
                 .graphicsLayer {
                     alpha = 0.5f
                 }
         ) {
             Box(
-                modifier = Modifier.heightIn(min = 200.dp, max = 400.dp),
+                modifier = Modifier.fillMaxSize(),
                 contentAlignment = Alignment.Center
             ) {
                 VerticalPager(
-                    state = pagerState,
+                    state = pagerStateCauses,
                     modifier = Modifier
                         .fillMaxWidth()
-                        .wrapContentSize(),
+                        .fillMaxHeight(),
                 ) { page ->
-                    Text(//Title
+                    Text(
                         text = stringResource(id = causesItems[page].causeTitle),
-                        Modifier.padding(tlp,tlp,tlp,0.dp),
+                        Modifier.padding(40.dp, 60.dp, 40.dp, 20.dp),
                         fontFamily = FontFamily.SansSerif,
                         fontStyle = FontStyle.Italic,
-                        fontSize = fsTitle.sp,
-                        fontWeight = FontWeight.Bold
+                        fontSize = 30.sp,
                     )
-                    Text(//Body
+                    Text(
                         text = stringResource(id = causesItems[page].causeDescription),
-                        Modifier.padding(bp,0.dp,bp,0.dp),
-                        fontStyle = FontStyle.Italic,
-                        fontSize = fsBody.sp,
-                        )
-                    ShowImage(id = causesItems[page].causeIcon, imgSize)
+                        Modifier.padding(50.dp, 20.dp, 50.dp, 50.dp),
+                        fontStyle = FontStyle.Italic
+                    )
+                    ShowImage(id = causesItems[page].causeIcon, 100)
                 }
 
             }
