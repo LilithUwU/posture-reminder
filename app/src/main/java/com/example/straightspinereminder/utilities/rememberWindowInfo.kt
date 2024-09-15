@@ -5,7 +5,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-//todo: use dependency injection
+
+//todo: use dependency injection in companion object
 @Composable
 fun rememberWindowInfo(): WindowInfo {
     val configuration= LocalConfiguration.current
